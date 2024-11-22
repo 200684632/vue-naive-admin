@@ -16,6 +16,8 @@
       :export-config="exportConfig"
       :toolbar-config="vxeToolbarConfig"
       :proxy-config="proxyConfig"
+      :row-config="rowConfig"
+      :tree-config="treeCOnfig"
       v-on="gridEvent"
     >
       <template #loading>
@@ -113,6 +115,16 @@ watch(
     gridRef.value.reloadData(n)
   },
 )
+const rowConfig = computed(() => {
+  return {
+    keyField: props.rowKey,
+    isHover: true,
+  }
+})
+
+const treeCOnfig = computed(() => {
+  return { rowField: props.rowKey, childrenField: 'children' }
+})
 
 const vxeToolbarConfig = computed(() => {
   return {

@@ -5,8 +5,9 @@
  * @Email: zclzone@outlook.com
  * Copyright © 2023 Ronnie Zhang(大脸怪) | https://isme.top
  **********************************/
-
 import { defaultLayout, defaultPrimaryColor, naiveThemeOverrides } from '@/settings'
+import { lStorage } from '@/utils'
+import api from '@/views/pms/dict/api'
 import { generate, getRgbStr } from '@arco-design/color'
 import { useDark } from '@vueuse/core'
 import { defineStore } from 'pinia'
@@ -26,6 +27,12 @@ export const useAppStore = defineStore('app', {
     },
     setCollapsed(b) {
       this.collapsed = b
+    },
+    getAllDict() {
+      api.getDicts().then((res) => {
+        lStorage.set('allDict', JSON.stringify(res.data))
+        this.allDict = res.data
+      })
     },
     toggleDark() {
       this.isDark = !this.isDark

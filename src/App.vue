@@ -46,6 +46,8 @@ function getLayout(name) {
 
 const route = useRoute()
 const appStore = useAppStore()
+
+appStore.getAllDict()
 if (appStore.layout === 'default')
   appStore.setLayout('')
 const Layout = computed(() => {
